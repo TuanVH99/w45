@@ -12,5 +12,4 @@ client.connect(() => {
 })
 
 
-
 module.exports = db;

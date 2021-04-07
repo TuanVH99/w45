@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const {createDish,getFour} = require('../controller/dish');
-const { getDishById } = require('../database/dishFunction');
+const {createDish,getFour,getDishById} = require('../controller/dish');
+// const { getDishById } = require('../database/dishFunction');
 // const { getFour } = require('../database/dishFunction');
 // const middleware = require('../middleware/');
 

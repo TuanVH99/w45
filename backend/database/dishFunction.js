@@ -13,7 +13,7 @@ dishFunction.getDishById = async (id) => {
     // const result = await db.dishes.findOne({
     //     _id: ObjectId(id)
     // })
-
+//co van de, can xem lai
     const result = await db.dishes.aggregate([{
         $lookup: {
             from: 'users',

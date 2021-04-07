@@ -13,7 +13,7 @@ class Dish{
         this.name = name;
         this.description = description;
     }
-    getInfo(name,value){
+    setInfo(name,value){
         this[name] = value
     }
 

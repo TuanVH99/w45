@@ -2,17 +2,41 @@ const {
     ObjectId
 } = require('bson');
 const db = require('../database');
+const {createUser,login,findById} = require('../controller/user');
+
 
 const router = require('express').Router();
 
 router.get('/profile/:id', async (req, res) => {
-    const user = await db.users.findOne({
-        _id: ObjectId(req.params.id)
-    },{projection:{hash:0,salt:0,token:0}})
-    if(user===null){
-        res.status(401).json({Error:"user not available"})
+    try{
+        const result = await findById(req.params.id)
+        res.json(result)
+    }catch(e){
+        res.status(400).json({Error:e.message})
     }
-    res.json(user)
+    
 })
+router.post('/login', async (req, res) => {
+    try {
+        const user = await login(req.body.username, req.body.password)
+        res.json(user)
+    } catch (e) {
+        console.log(e)
+        res.status(403).json({
+            Error: e.message
+        })
+    }
+})
+
+router.post('/sign-up', async (req, res) => {
+    try {
+        const createdUser = await createUser(req.body.username, req.body.password, req.body.confirmPassword)
+        res.json(createdUser)
+    } catch (e) {
+        res.status(401).json({Error:e.message})
+    }
+
+})
+
 
 module.exports = router
