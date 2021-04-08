@@ -5,6 +5,8 @@ require('dotenv').config();
 
 const dishRouter = require('./api/dish')
 const userRouter = require('./api/user')
+const uploadRouter = require('./api/upload')
+
 
 const port = process.env.PORT 
 const app = express();
@@ -13,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json())
 app.use(dishRouter);
 app.use(userRouter);
+app.use(uploadRouter);
 
 
 app.get('/',(req,res)=>{
