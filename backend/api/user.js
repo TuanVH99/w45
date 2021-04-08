@@ -2,19 +2,26 @@ const {
     ObjectId
 } = require('bson');
 const db = require('../database');
-const {createUser,login,findById} = require('../controller/user');
-
-
+const {
+    createUser,
+    login,
+    findById,
+    findByUsername
+} = require('../controller/user');
+const jwtMiddleware = require('../middleware/auth')
 const router = require('express').Router();
 
+
 router.get('/profile/:id', async (req, res) => {
-    try{
+    try {
         const result = await findById(req.params.id)
         res.json(result)
-    }catch(e){
-        res.status(400).json({Error:e.message})
+    } catch (e) {
+        res.status(400).json({
+            Error: e.message
+        })
     }
-    
+
 })
 router.post('/login', async (req, res) => {
     try {
@@ -33,9 +40,14 @@ router.post('/sign-up', async (req, res) => {
         const createdUser = await createUser(req.body.username, req.body.password, req.body.confirmPassword)
         res.json(createdUser)
     } catch (e) {
-        res.status(401).json({Error:e.message})
+        res.status(401).json({
+            Error: e.message
+        })
     }
+})
 
+router.post('/auth/me',jwtMiddleware ,(req,res)=>{
+  res.json(req.data)
 })
 
 

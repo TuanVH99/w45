@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const jwt = require('jsonwebtoken')
 class User {
     _id;
     username;
@@ -29,6 +30,9 @@ class User {
     }
     setInfo(name, value) {
         this[name] = value
+    }
+    generateToken(){
+        return jwt.sign({username:this.username},process.env.SECRET_KEY,{expiresIn:3600})
     }
 }
 

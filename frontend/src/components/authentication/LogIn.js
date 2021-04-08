@@ -11,21 +11,21 @@ function LogIn() {
 
     })
 
-    const { authedUser, setAuthedUser } = useContext(UserContext)
+    const { authUser, setAuthUser } = useContext(UserContext)
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        if (authedUser) {
+        if (authUser) {
             history.push("/")
         }
-    }, [authedUser, history])
+    }, [authUser, history])
     const handleInput = () => {
         if (value.password === "" || value.username === "") {
             setError("Hãy điền đầy đủ thông tin")
             return false
         }
-        if (value.username.length <= 6 || value.password.length <= 6) {
+        if (value.username.length <= 5 || value.password.length <= 5) {
             setError("Vui long điền đúng định dạng")
             return false
         }
@@ -61,7 +61,7 @@ function LogIn() {
                     } else {
                         console.log(result)
                         const { token } = result
-                        setAuthedUser(result)
+                        setAuthUser(result)
                         localStorage.setItem('token', token)
                         setSuccess(true)
                         history.push("/")

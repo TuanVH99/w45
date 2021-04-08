@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useContext} from "react";
 import NewDishes from './NewDishes'
 import { Carousel, Container } from 'react-bootstrap'
 
@@ -8,7 +8,6 @@ function Home() {
     return (
         <>
             <Container className="pt-5">
-
                 <Carousel>
                     <Carousel.Item>
                         <img

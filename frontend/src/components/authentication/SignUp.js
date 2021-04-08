@@ -11,7 +11,6 @@ function SignUp() {
         password: "",
         confirmPassword: ""
     })
-
     const [error, setError] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -27,7 +26,7 @@ function SignUp() {
             setError("Hãy điền đầy đủ thông tin")
             return false
         }
-        if (value.username.length <= 6 || value.password.length <= 6) {
+        if (value.username.length <= 5 || value.password.length <= 5) {
             setError("Vui long điền đúng định dạng")
             return false
         }
@@ -56,7 +55,7 @@ function SignUp() {
                         setLoading(false)
                     } else {
                         setSuccess(true)
-                        history.go(0)
+                        history.push('/auth')
                     }
                 })
     }

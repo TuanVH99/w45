@@ -1,11 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Container, Image, Row, Col, Button } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+
+import  Avatar  from './Avatar';
 
 const src1 = "https://saodieu.vn/media/Bai%20Viet%20-%20T62016/Saodieu%20-%2010%20mon%20an%201.jpg"
 
 function Detail(props) {
     const { id } = useParams();
+    const history = useHistory();
     // const [user, setUser] = useState({})
     const [dish, setDish] = useState({})
     useEffect(() => {
@@ -43,7 +46,7 @@ function Detail(props) {
         const a = { ...dish.author }
         if (a) {
             return (<Row>
-                <Image style={{ height: 60 }} src={a.avatar} thumbnail roundedCircle fluid />
+               <Avatar src={a.avatar} onClick={()=>{history.push('/user/'+a._id)}}/>
                 <p className="pl-5"><strong>{a.username}</strong></p>
             </Row>
             )
@@ -55,7 +58,7 @@ function Detail(props) {
         const a = { ...dish.author }
         if (a) {
             return (<>
-                <Image src={a.avatar} thumbnail roundedCircle fluid /><br />
+                <Avatar src={a.avatar}  onClick={()=>{history.push('/user/'+a._id)}} /><br />
                 Duoc tao boi tac gia:{a.username}<br />
                 {a.description}<br />
                 vao ngay:{dish.created}<br />

@@ -17,9 +17,20 @@ userAction.createUser = async (newUser) => {
 
 
 userAction.findById = async (id, option = 1) => {
+    console.log(option)
     if (option == 0) {
         const raw = await db.users.findOne({
             _id: ObjectId(id)
+        });
+        return raw
+    } else if (option == 2) {
+        const raw = await db.users.findOne({
+            _id: ObjectId(id)
+        }, {
+            projection: {
+                hash: 0,
+                salt: 0
+            }
         });
         return raw
     } else {
@@ -48,6 +59,16 @@ userAction.findByUsername = async (username, option = 1) => {
             }
         });
         return raw
+    } else if (option == 2) {
+        const raw = await db.users.findOne({
+            username: username
+        }, {
+            projection: {
+                hash: 0,
+                salt: 0
+            }
+        });
+        return raw
     } else {
         const raw = await db.users.findOne({
             username: username
@@ -58,7 +79,9 @@ userAction.findByUsername = async (username, option = 1) => {
 }
 userAction.update = async (user, update) => {
     const result = await db.users.updateOne(user, {
-        $set:{...update}
+        $set: {
+            ...update
+        }
     })
 }
 

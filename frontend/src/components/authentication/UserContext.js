@@ -2,7 +2,7 @@ import {
     createContext,
 } from 'react';
 const UserContext = createContext({
-    user: "",
-    token: "",
+    authUser: null,
+    setAuthUser: () => {}
 })
 export default UserContext;

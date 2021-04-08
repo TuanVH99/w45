@@ -43,12 +43,8 @@ const login = async (username, password) => {
         expiresIn: 1000
     })
     await userAction.update(existedUser,{token:token})
-    user.setInfo("_id",existedUser._id)
-    user.setInfo("hash",existedUser.hash)
-    user.setInfo("salt",existedUser.salt)
-    user.setInfo("token",token)
-    console.log(user)
-    return user;
+    const result =  await userAction.findByUsername(username,2)
+    return result;
 }
 
 const findById = async (id,option = 1) => {
@@ -60,8 +56,18 @@ const findById = async (id,option = 1) => {
     }
 }
 
+const findByUsername = async (username,option = 1) => {
+    const result = await userAction.findByUsername(username,option)
+    if (result === null) {
+        throw new Error("Người dùng không hợp lệ")
+    } else {
+        return result
+    }
+}
+
 module.exports = {
     createUser,
     login,
-    findById
+    findById,
+    findByUsername
 }
