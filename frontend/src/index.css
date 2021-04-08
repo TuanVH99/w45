@@ -10,6 +10,9 @@ body {
 .container{
   background: #f8f6f2;
 }
+.carousel img {
+  max-height: 300px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
