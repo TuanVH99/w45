@@ -12,6 +12,7 @@ userAction.createUser = async (newUser) => {
         hash: newUser.hash,
         created: newUser.created
     })
+    console.log(raw)
     return (raw.ops[0])
 }
 

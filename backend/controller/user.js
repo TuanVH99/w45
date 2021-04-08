@@ -9,7 +9,6 @@ const createUser = async (username, password, confirm) => {
     }
 
     const existedUser = await userAction.findByUsername(username)
-    
 
     if (existedUser) {
         throw new Error("người dùng đã tồn tại");
@@ -23,8 +22,8 @@ const createUser = async (username, password, confirm) => {
     //     created: newUser.created
     // })
     const insertedUser = await userAction.createUser(newUser)
-    console.log("controller:"+insertedUser)
-    return insertedUser;
+    
+    return newUser;
 }
 const login = async (username, password) => {
     const existedUser = await userAction.findByUsername(username,0)

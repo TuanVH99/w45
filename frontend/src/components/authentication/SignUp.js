@@ -55,12 +55,16 @@ function SignUp() {
                         setLoading(false)
                     } else {
                         setSuccess(true)
-                        history.push('/auth')
                     }
                 })
     }
+    const handleSuccess = () => {
+        if(success === true)
+        history.go(0)
+    }
     return (
         <>
+            {handleSuccess()}
             <Card>
                 <Card.Header className="text-center">Đăng ký</Card.Header>
                 <Card.Body>

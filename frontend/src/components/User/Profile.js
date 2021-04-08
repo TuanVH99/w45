@@ -67,7 +67,8 @@ function Profile() {
                 <Button variant="outline-info" className="rounded-pill m-3">Chỉnh sửa thông tin cá nhân</Button>
                 <Button onClick={()=>{
                     setAuthUser(null)
-                    history.push('/')
+                    // history.push('/')
+                    
                 }} variant="outline-info" className="rounded-pill m-3">Đăng xuất</Button>
             </div>
 
